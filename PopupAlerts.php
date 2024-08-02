@@ -60,11 +60,23 @@ class PopupAlerts extends \ExternalModules\AbstractExternalModule {
                 </div>
             </div>
         </div>";
+        // Inject custom CSS for the popup
+        echo "<style type='text/css'>
+            #alertModal .modal-dialog {
+                max-width: fit-content;
+                width: auto;
+                display: flex;
+            }
+            #alertModal .modal-content {
+                display: flex;
+                justify-content: center;
+            }
+            </style>";
         echo "<script type='text/javascript'>
     var alertFields = " . json_encode($alertFields) . ";
 
     // Function to transform the descriptive text field into a Bootstrap modal alert
-    function transformToAlert(element, alertTitle) {
+    function transformToAlert(element, fieldName, alertTitle) {
 
         var fieldContent = element.find('.rich-text-field-label').html();
         
@@ -83,17 +95,22 @@ class PopupAlerts extends \ExternalModules\AbstractExternalModule {
         $('#alertModal .alert-content').html(fieldContent);
         $('#alertModal .modal-title').text(alertTitle);
 
+        // Add a class to the modal based on the field name to allow custom CSS styling
+        $('#alertModal').removeClass(function(index, className) {
+            return (className.match(/(^|\s)popup-\S+/g) || []).join(' ');
+        }).addClass(fieldName + '-popup');
+
         // Show the modal
         $('#alertModal').modal('show');
     }
 
     // Function to handle the visibility and transformation to alert
-    function handleVisibilityChange(element, alertTitle) {
+    function handleVisibilityChange(element, fieldName, alertTitle) {
         return function(mutationsList) {
             for (let mutation of mutationsList) {
                 if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
                     if ($(element).is(':visible')) {
-                        transformToAlert($(element), alertTitle);
+                        transformToAlert($(element), fieldName, alertTitle);
                     }
                 }
             }
@@ -105,13 +122,13 @@ class PopupAlerts extends \ExternalModules\AbstractExternalModule {
 
     $(document).ready(function() {
     // Loop through all alertField elements, attach each to a DOM element and begin observing it
-    for (var field in alertFields) {
-        var alertTitle = alertFields[field].title;
-        var fieldElement = $('#' + field + '-tr');
+    for (var fieldName in alertFields) {
+        var alertTitle = alertFields[fieldName].title;
+        var fieldElement = $('#' + fieldName + '-tr');
 
         if (fieldElement.length) {
             // Create an instance of MutationObserver for each field
-            var observer = new MutationObserver(handleVisibilityChange(fieldElement[0], alertTitle));
+            var observer = new MutationObserver(handleVisibilityChange(fieldElement[0], fieldName, alertTitle));
             observer.observe(fieldElement[0], config);
         }
     }

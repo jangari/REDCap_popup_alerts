@@ -38,6 +38,10 @@ This module can be configured with the following project settings:
 | Modal title | "Alert" | Title of the popup window showing any requested or required fields. |
 | Okay button text | "Okay" | Text for okay button. |
 
+## CSS customisation
+
+The popup modal can be styled using CSS by targeting its id and class attributes in the DOM. Furthermore, a popup window also has a class injected into its outer div, which is based on the descriptive text field that triggered the popup. For example, if a descriptive text field called `my_field` is transformed into a popup, then the popup will have the class `my_field-popup`. This allows specific styling to be applied to different popups.
+
 ## Internationalisation
 
 This module supports translation via the REDCap External Module Framework's Internationalisation (i18n) features. All configuration options, default popup window title and Okay button text, and module name and description, may be translated by duplicating the file `lang/English.ini` to your local language and replacing the values of each text parameter. If you translate this module to a new language, consider contributing your translation to this repository so that it can be included in future releases for other sites.
