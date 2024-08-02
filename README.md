@@ -1,8 +1,18 @@
 # REDCap Popup Alerts
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13161707.svg)](https://doi.org/10.5281/zenodo.13161707)
+
 This module allows the content of descriptive text fields to be displayed as an alert in a popup window for better visibility.
 
 When annotated with `@ALERT` it will display the field's label as the content of a popup alert when the field becomes visible due to branching logic. The field is also then hidden, so as not to duplicate the information.
+
+Go from this:
+
+![without_popup](img/without_popup.png)
+
+To this:
+
+![with_popup](img/with_popup.png)
 
 The popup window has a default title of "Alert". This can be overridden for each field by using `@ALERT="Custom title"`.
 
@@ -36,7 +46,7 @@ This module supports translation via the REDCap External Module Framework's Inte
 
 If you use this external module for a project that generates a research output, please cite this software in addition to [citing REDCap](https://projectredcap.org/resources/citations/) itself. You can do so using the APA referencing style as below:
 
-> Wilson, A. (2024). REDCap Popup Alerts [Computer software]. https://github.com/jangari/redcap_popup_alerts
+> Wilson, A. (2024). REDCap Popup Alerts [Computer software]. https://github.com/jangari/redcap_popup_alerts https://doi.org/10.5281/zenodo.13161707
 
 Or by adding this reference to your BibTeX database:
 
