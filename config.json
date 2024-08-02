@@ -1,0 +1,41 @@
+{
+    "name": "Popup Alerts",
+		"tt_name": "name",
+        "namespace": "INTERSECT\\PopupAlerts",
+		"description": "Allows the content of descriptive text fields to be displayed as an alert in a modal window for better visibility.",
+		"tt_description": "description",
+		"framework-version": 14,
+		"authors": [
+			{
+				"name": "Aidan Wilson",
+				"email": "aidan.wilson@intersect.org.au",
+				"institution": "Intersect Australia"
+			}
+		],
+		"action-tags": [
+			{
+				"tag": "@ALERT", 
+				"description": "Displays the field's label as the content of a modal popup when the field becomes visible due to branching logic. The field is also then hidden, so as not to duplicate the information. The modal can be given a custom title by @ALERT=\"Custom title\". Otherwise it will have a default title of \"Alert\"."
+			}
+        ],
+        "project-settings": [
+            {
+                "key": "popups-enabled",
+                "tt_name": "popups-enabled",
+                "name": "Enable",
+                "type": "checkbox"
+            },
+            {
+                "key": "modal-title",
+                "tt_name": "modal-title",
+                "name": "Modal title<br/>Default title of modal popup alert. Overridden by @ALERT=\"Custom title\".<br/><em>Default: \"Alert\"</em>",
+                "type": "text"
+            },
+            {
+                "key": "modal-okay-btn",
+                "tt_name": "modal-okay-btn",
+                "name": "Okay button text<br/><em>Default: \"Okay\"</em>",
+                "type": "text"
+            }
+        ]
+}
